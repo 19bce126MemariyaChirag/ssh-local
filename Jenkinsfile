@@ -1,11 +1,11 @@
 pipeline {
-  agent any
-  stages{
-    stage('ssh-local machine  accesss') {
-      steps {
-        withCredentials([usernameColonPassword(credentialsId: 'anil-ssh', variable: 'anilssh')]) {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
     }
-      }
-    }
-  }
 }
