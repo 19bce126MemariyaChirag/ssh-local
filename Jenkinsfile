@@ -3,7 +3,7 @@ pipeline {
   stages{
     stage('ssh-local machine  accesss') {
       steps {
-        sshpass -p meet ssh meetshah@172.16.1.123 'sudo docker kill $(sudo docker ps -q)'
+        sshpass -p usernotfound ssh anilkumar@192.168.196.188 'sudo docker kill $(sudo docker ps -q)'
       }
     }
   }
