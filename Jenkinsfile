@@ -1,9 +1,9 @@
 pipeline {
     agent {
-        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
+        docker { image 'node:16-alpine' }
     }
     environment {
-        APP_NAME = "unit-testing-aspnetcore"
+        APP_NAME = "unit-testing-asp-.net-core-gitlav-vs-jenkins "
         APP_PORT = "5000"
         IMAGE_TAG = "latest"
         DOCKER_REGISTRY="memariyachirag126"
@@ -13,10 +13,9 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'dotnet --version'
+                sh 'node --version'
             }
         }
-        /*
         stage('Build') {
             steps {
                 // Build the project
@@ -43,6 +42,5 @@ pipeline {
                 }
             }
         }
-        */
     }
 }
