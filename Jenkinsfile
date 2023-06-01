@@ -4,7 +4,7 @@ pipeline {
     }
     environment {
         HOME = '/tmp'
-        APP_NAME = "unit-testing-asp-.net-core-gitlav-vs-jenkins "
+        APP_NAME = "unit-testing-asp-dotnet-core-gitlav-vs-jenkins"
         APP_PORT = "5000"
         IMAGE_TAG = "latest"
         DOCKER_REGISTRY="memariyachirag126"
