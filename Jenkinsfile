@@ -1,6 +1,7 @@
-
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:16-alpine' }
+    }
     environment {
         APP_NAME = "unit-testing-aspnetcore"
         APP_PORT = "5000"
@@ -8,19 +9,22 @@ pipeline {
         DOCKER_REGISTRY="memariyachirag126"
         DOCKER_USERNAME="memariyachirag126"
         DOCKER_PASSWORD="dckr_pat_QUWempv4V6X7lbUR-UU83Y0lIdo"
-        
-    }
+        }
     stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+        /*
         stage('Build') {
             steps {
-                
                 // Build the project
                 sh 'dotnet build'
             }
         }
         stage('test') {
             steps {
-                
                 // test the project
                 sh 'dotnet test'
             }
@@ -39,5 +43,6 @@ pipeline {
                 }
             }
         }
+        */
     }
 }
