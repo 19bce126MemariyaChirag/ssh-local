@@ -15,8 +15,10 @@ pipeline {
         stage('Check Version of .NET') {
             steps {
                 sh 'dotnet --version'
+                sh 'docker --version'
             }
         }
+        /*
         stage('Build') {
             steps {
                 // Build the project
@@ -42,6 +44,6 @@ pipeline {
                     docker.build("${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}", "--build-arg APP_PORT=${APP_PORT} .")
                 }
             }
-        }
+        } */
     }
 }
