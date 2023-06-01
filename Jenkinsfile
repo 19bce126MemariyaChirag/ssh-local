@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'node:16-alpine' }
+        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
     }
     environment {
         APP_NAME = "unit-testing-asp-.net-core-gitlav-vs-jenkins "
@@ -11,9 +11,9 @@ pipeline {
         DOCKER_PASSWORD="dckr_pat_QUWempv4V6X7lbUR-UU83Y0lIdo"
         }
     stages {
-        stage('Test') {
+        stage('Check Version of .NET') {
             steps {
-                sh 'node --version'
+                sh 'dotnet --version'
             }
         }
         stage('Build') {
