@@ -3,6 +3,7 @@ pipeline {
         docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
     }
     environment {
+        HOME = '/tmp'
         APP_NAME = "unit-testing-asp-.net-core-gitlav-vs-jenkins "
         APP_PORT = "5000"
         IMAGE_TAG = "latest"
