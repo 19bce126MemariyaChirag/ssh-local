@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'node:16-alpine' }
+        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
     }
     environment {
         APP_NAME = "unit-testing-aspnetcore"
@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'node --version'
+                sh 'dotnet --version'
             }
         }
         /*
