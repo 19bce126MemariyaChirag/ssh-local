@@ -1,7 +1,4 @@
 pipeline {
-    agent {
-        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
-    } || any
     environment {
         HOME = '/tmp'
         APP_NAME = "unit-testing-asp-dotnet-core-gitlav-vs-jenkins"
@@ -13,29 +10,42 @@ pipeline {
         }
     stages {
         stage('Check Version of .NET') {
+        agent {
+        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
+    }
             steps {
                 sh 'dotnet --version'
             }
         }
         stage('Build') {
+        agent {
+        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
+    }
             steps {
                 // Build the project
                 sh 'dotnet build'
             }
         }
         stage('test') {
+        agent {
+        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
+    }
             steps {
                 // test the project
                 sh 'dotnet test'
             }
         }
         stage('pulbish'){
+        agent {
+        docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
+    }
             steps{
                 // Publish the project
                 sh 'dotnet publish -c Release -o ./publish'
             }
         }
         stage('Build docker image') {
+        agent any
             steps {  
                 sh 'docker build -t memariyachirag126/dotnet-same-app:1.0 .'
             }
