@@ -2,9 +2,9 @@ pipeline {
 agent none
     environment {
         HOME = '/tmp'
-        APP_NAME = "finaldemo-testing-asp-dotnet-core-gitlav-vs-jenkins"
+        APP_NAME = "dotnet-comparison-same-app"
         APP_PORT = "5000"
-        IMAGE_TAG = "latest"
+        IMAGE_TAG = "1.0"
         DOCKER_REGISTRY="memariyachirag126"
         DOCKER_USERNAME="memariyachirag126"
         DOCKER_PASSWORD="dckr_pat_u0F_btR1cPtN1Z6gIa2ewM7ptY4"
@@ -48,7 +48,7 @@ agent none
         stage('Build docker image') {
         agent any
             steps {  
-                sh 'docker build -t memariyachirag126/dotnet-same-app:1.0 .'
+                sh 'docker build -t memariyachirag126/dotnet-comparison-same-app:1.0 .'
             }
         }
         stage('Docker Login and Push') {
