@@ -4,8 +4,8 @@ agent none
         HOME = '/tmp'
         APP_NAME = "dotnet-comparison-same-app"
         APP_PORT = "5000"
-        IMAGE_TAG = "2.0"
-        DOCKER_REGISTRY="localhost:5000"
+        IMAGE_TAG = "3.0"
+        DOCKER_REGISTRY="memariyachirag126"
         DOCKER_USERNAME="memariyachirag126"
         DOCKER_PASSWORD="dckr_pat_u0F_btR1cPtN1Z6gIa2ewM7ptY4"
         }
@@ -33,8 +33,16 @@ agent none
             agent any
             steps {  
                 sh 'docker build -t ${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG} .'
-                echo '# Push the image to the local registry'
-                sh 'docker push ${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}'
+            }
+        }
+        stage('Docker Login and Push') {
+            agent any
+            steps {
+                // Log in to Docker registry
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-token', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                    sh "docker push ${DOCKER_REGISTRY}/${APP_NAME}:${IMAGE_TAG}"
+                }
             }
         }
     }
