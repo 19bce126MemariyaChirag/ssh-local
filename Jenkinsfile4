@@ -2,6 +2,7 @@ pipeline {
 agent none
     environment {
         HOME = '/tmp'
+        DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
         APP_NAME = "dotnet-comparison-same-app"
         APP_PORT = "5000"
         IMAGE_TAG = "3.0"
