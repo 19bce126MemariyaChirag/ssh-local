@@ -1,0 +1,32 @@
+pipeline {
+agent none
+    environment {
+        HOME = '/tmp'
+        APP_NAME = "dotnet-comparison-same-app"
+        APP_PORT = "5000"
+        IMAGE_TAG = "3.0"
+        DOCKER_REGISTRY="memariyachirag126"
+        DOCKER_USERNAME="memariyachirag126"
+        DOCKER_PASSWORD="dckr_pat_u0F_btR1cPtN1Z6gIa2ewM7ptY4"
+        }
+    stages {
+        stage('Build Test Publish') {
+            agent {
+                docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
+            }
+            steps {
+                // Build the project
+                echo 'Building a Image'
+                sh 'dotnet build'
+
+                // test the project
+                echo 'Test a Project'
+                sh 'dotnet test'
+
+                // Publish the project
+                echo 'Publishing a dotnet app'
+                sh 'dotnet publish -c Release -o ./publish'
+            }
+        }
+    }
+}
