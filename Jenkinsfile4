@@ -1,5 +1,5 @@
 pipeline {
-agent none
+agent any
     environment {
         HOME = '/tmp'
         DOTNET_CLI_HOME = "/tmp/DOTNET_CLI_HOME"
@@ -12,9 +12,6 @@ agent none
         }
     stages {
         stage('Build Test Publish') {
-            agent {
-                docker { image 'mcr.microsoft.com/dotnet/sdk:6.0' }
-            }
             steps {
                 // Build the project
                 echo 'Building a Image'
